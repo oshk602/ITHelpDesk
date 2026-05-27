@@ -1,5 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
+from werkzeug.security import generate_password_hash
+
 from extensions import db
+from forms import RegisterForm
 
 # Create Flask app
 app = Flask(__name__)
@@ -19,10 +22,36 @@ from models import User, Ticket
 with app.app_context():
     db.create_all()
 
-# Test route
 @app.route('/')
 def home():
     return "Flask is working!"
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+
+        hashed_password = generate_password_hash(
+            form.password.data
+        )
+
+        new_user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=hashed_password
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+
+    return render_template(
+        'register.html',
+        form=form
+    )
 
 # Run server
 if __name__ == '__main__':
