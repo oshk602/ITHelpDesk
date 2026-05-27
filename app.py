@@ -1,15 +1,29 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from extensions import db
 
+# Create Flask app
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'secretkey123'
+# Configurations
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'secretkey123'
 
-db = SQLAlchemy(app)
+# Connect database to app
+db.init_app(app)
 
-login_manager = LoginManager()
-login_manager.init_app(app)
+# Import models AFTER db setup
+from models import User, Ticket
 
-from models import *
+# Create tables
+with app.app_context():
+    db.create_all()
+
+# Test route
+@app.route('/')
+def home():
+    return "Flask is working!"
+
+# Run server
+if __name__ == '__main__':
+    app.run(debug=True)
