@@ -213,12 +213,10 @@ def login():
 @login_required
 def dashboard():
 
-    return f"""
-    Welcome {current_user.username}<br><br>
-    Role: {current_user.role}<br><br>
-
-    <a href='/logout'>Logout</a>
-    """
+    return render_template(
+        'dashboard.html',
+        user=current_user
+    )
 
 # Logout route
 @app.route('/logout')

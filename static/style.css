@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+.dashboard-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.role-text {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.card-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    width: 280px;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.dashboard-card h2 {
+    margin-top: 0;
+}
+
+.logout-btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 24px;
+
+    background: #dc3545;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.logout-btn:hover {
+    opacity: 0.9;
+}
