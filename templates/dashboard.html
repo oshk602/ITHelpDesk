@@ -1,40 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% block title %}
+Dashboard
+{% endblock %}
 
-    <div class="dashboard-container">
+{% block content %}
 
-        <h1>Welcome, {{ current_user.username }}</h1>
+<div class="dashboard-container">
 
-        <p class="role-text">
-            Role: {{ current_user.role }}
-        </p>
+    <h1>Welcome, {{ current_user.username }}</h1>
 
-        <div class="card-grid">
+    <p>Role: {{ current_user.role }}</p>
 
-            <a href="{{ url_for('create_ticket') }}" class="dashboard-card">
-                <h2>Create Ticket</h2>
-                <p>Submit a new support request.</p>
-            </a>
+    <div class="card-grid">
 
-            <a href="{{ url_for('tickets') }}" class="dashboard-card">
-                <h2>My Tickets</h2>
-                <p>View and manage your tickets.</p>
-            </a>
+        <a href="{{ url_for('create_ticket') }}"
+           class="dashboard-card">
 
-        </div>
+            <h2>Create Ticket</h2>
+            <p>Submit a new support request.</p>
 
-        <a href="{{ url_for('logout') }}" class="logout-btn">
-            Logout
+        </a>
+
+        <a href="{{ url_for('tickets') }}"
+           class="dashboard-card">
+
+            <h2>My Tickets</h2>
+            <p>View existing tickets.</p>
+
         </a>
 
     </div>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

@@ -1,59 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Tickets</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% block title %}
+My Tickets
+{% endblock %}
 
-    <div class="page-container">
+{% block content %}
 
-        <div class="page-header">
+<div class="page-container">
 
-            <h1>My Tickets</h1>
+    <h1>My Tickets</h1>
 
-            <a href="{{ url_for('create_ticket') }}"
-               class="primary-btn">
-                Create Ticket
-            </a>
+    {% for ticket in tickets %}
+
+        <div class="ticket-card">
+
+            <h2>{{ ticket.title }}</h2>
+
+            <p>{{ ticket.description }}</p>
+
+            <div class="ticket-footer">
+
+                <span class="status-badge">
+                    {{ ticket.status }}
+                </span>
+
+            </div>
 
         </div>
 
-        {% for ticket in tickets %}
+    {% endfor %}
 
-            <div class="ticket-card">
+</div>
 
-                <h2>{{ ticket.title }}</h2>
-
-                <p>
-                    {{ ticket.description }}
-                </p>
-
-                <div class="ticket-footer">
-
-                    <span class="status-badge">
-                        {{ ticket.status }}
-                    </span>
-
-                    <span>
-                        {{ ticket.created_at.strftime('%d %b %Y') }}
-                    </span>
-
-                </div>
-
-            </div>
-
-        {% else %}
-
-            <div class="ticket-card">
-                <p>No tickets found.</p>
-            </div>
-
-        {% endfor %}
-
-    </div>
-
-</body>
-</html> 
+{% endblock %}
