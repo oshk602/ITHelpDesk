@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length
 
 class RegisterForm(FlaskForm):
@@ -63,3 +63,16 @@ class LoginForm(FlaskForm):
         if len(value) < 3 or len(value) > 20:
             raise ValueError('Username must be between 3 and 20 characters.')
 
+class TicketForm(FlaskForm):
+
+    title = StringField(
+        'Title',
+        validators=[DataRequired()]
+    )
+
+    description = TextAreaField(
+        'Description',
+        validators=[DataRequired()]
+    )
+
+    submit = SubmitField('Create Ticket')
