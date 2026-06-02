@@ -7,17 +7,38 @@
           href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
     <nav class="navbar">
+        <div class="nav-left">
 
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('dashboard') }}"
+            class="{% if request.endpoint == 'dashboard' %}active-nav{% endif %}">
+                Dashboard
+            </a>
 
-        <a href="{{ url_for('tickets') }}">My Tickets</a>
+            <a href="{{ url_for('tickets') }}"
+            class="{% if request.endpoint == 'tickets' %}active-nav{% endif %}">
+                My Tickets
+            </a>
 
-        <a href="{{ url_for('create_ticket') }}">Create Ticket</a>
+            <a href="{{ url_for('create_ticket') }}"
+            class="{% if request.endpoint == 'create_ticket' %}active-nav{% endif %}">
+                Create Ticket
+            </a>
 
-        <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
 
+        <div class="nav-right">
+
+            <span class="user-badge">
+                {{ current_user.username }}
+            </span>
+
+            <a href="{{ url_for('logout') }}"
+            class="logout-link">
+                Logout
+            </a>
+
+        </div>
     </nav>
 
     {% block content %}
