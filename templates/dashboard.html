@@ -18,12 +18,12 @@
 
         <div class="card-grid">
 
-            <a href="#" class="dashboard-card">
+            <a href="{{ url_for('create_ticket') }}" class="dashboard-card">
                 <h2>Create Ticket</h2>
                 <p>Submit a new support request.</p>
             </a>
 
-            <a href="#" class="dashboard-card">
+            <a href="{{ url_for('tickets') }}" class="dashboard-card">
                 <h2>My Tickets</h2>
                 <p>View and manage your tickets.</p>
             </a>

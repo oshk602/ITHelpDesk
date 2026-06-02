@@ -3,7 +3,7 @@ from sqlalchemy import or_
 from werkzeug.security import generate_password_hash
 
 from extensions import db
-from forms import RegisterForm
+from forms import RegisterForm, TicketForm, LoginForm
 from flask_login import (
     LoginManager,
     login_user,
@@ -216,6 +216,43 @@ def dashboard():
     return render_template(
         'dashboard.html',
         user=current_user
+    )
+
+@app.route('/create-ticket', methods=['GET', 'POST'])
+@login_required
+def create_ticket():
+
+    form = TicketForm()
+
+    if form.validate_on_submit():
+
+        ticket = Ticket(
+            title=form.title.data,
+            description=form.description.data,
+            user_id=current_user.id
+        )
+
+        db.session.add(ticket)
+        db.session.commit()
+
+        return redirect(url_for('tickets'))
+
+    return render_template(
+        'create_ticket.html',
+        form=form
+    )
+
+@app.route('/tickets')
+@login_required
+def tickets():
+
+    tickets = Ticket.query.filter_by(
+        user_id=current_user.id
+    ).all()
+
+    return render_template(
+        'tickets.html',
+        tickets=tickets
     )
 
 # Logout route

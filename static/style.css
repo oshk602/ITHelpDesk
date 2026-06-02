@@ -4,11 +4,35 @@ body {
     background-color: #f4f6f8;
 }
 
+.page-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
 .dashboard-container {
     max-width: 1000px;
     margin: 50px auto;
     text-align: center;
     padding: 20px;
+}
+
+.content-card,
+.ticket-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
 }
 
 .role-text {
@@ -62,4 +86,73 @@ body {
 
 .logout-btn:hover {
     opacity: 0.9;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.primary-btn {
+    display: inline-block;
+
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 12px 24px;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+.ticket-card h2 {
+    margin-top: 0;
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    background: #dbeafe;
+    color: #1e40af;
+
+    padding: 5px 12px;
+    border-radius: 20px;
+
+    font-weight: bold;
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Ticket</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <div class="content-card">
+
+            <h1>Create Ticket</h1>
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.title.label }}
+                    {{ form.title(class="form-input") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.description.label }}
+                    {{ form.description(class="form-textarea") }}
+                </div>
+
+                {{ form.submit(class="primary-btn") }}
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
