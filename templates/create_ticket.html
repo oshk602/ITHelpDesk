@@ -12,18 +12,42 @@ Create Ticket
 
         <h1>Create Ticket</h1>
 
-        <form method="POST">
+        <form method="POST" novalidate>
 
             {{ form.hidden_tag() }}
 
             <div class="form-group">
+
                 {{ form.title.label }}
-                {{ form.title(class="form-input") }}
+
+                {{ form.title(
+                    class="form-input" +
+                    (" error-input" if form.title.errors else "")
+                ) }}
+
+                {% for error in form.title.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
             </div>
 
             <div class="form-group">
+
                 {{ form.description.label }}
-                {{ form.description(class="form-textarea") }}
+
+                {{ form.description(
+                    class="form-textarea" +
+                    (" error-input" if form.description.errors else "")
+                ) }}
+
+                {% for error in form.description.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
             </div>
 
             {{ form.submit(class="primary-btn") }}

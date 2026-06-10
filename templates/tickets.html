@@ -10,25 +10,41 @@ My Tickets
 
     <h1>My Tickets</h1>
 
-    {% for ticket in tickets %}
+    {% if tickets %}
 
-        <div class="ticket-card">
+        {% for ticket in tickets %}
 
-            <h2>{{ ticket.title }}</h2>
+            <div class="ticket-card">
 
-            <p>{{ ticket.description }}</p>
+                <h2>{{ ticket.title }}</h2>
 
-            <div class="ticket-footer">
+                <p>{{ ticket.description }}</p>
 
-                <span class="status-badge">
-                    {{ ticket.status }}
-                </span>
+                <div class="ticket-footer">
+
+                    <span class="status-badge">
+                        {{ ticket.status }}
+                    </span>
+
+                </div>
 
             </div>
 
+        {% endfor %}
+
+    {% else %}
+
+        <div class="ticket-card">
+
+            <h2>No Tickets Found</h2>
+
+            <p>
+                You haven't created any tickets yet.
+            </p>
+
         </div>
 
-    {% endfor %}
+    {% endif %}
 
 </div>
 

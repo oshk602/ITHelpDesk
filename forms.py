@@ -3,7 +3,6 @@ from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length
 
 class RegisterForm(FlaskForm):
-
     username = StringField(
         'Username',
         validators=[
@@ -31,7 +30,6 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-
     identifier = StringField(
         'Email or Username',
         validators=[
@@ -49,7 +47,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
     def validate_identifier(self, field):
-        # Accept either a valid email or a username.
         value = (field.data or '').strip()
 
         # Email validator
@@ -59,20 +56,24 @@ class LoginForm(FlaskForm):
         except Exception:
             pass
 
-        # Username validator (must match what registration accepts)
         if len(value) < 3 or len(value) > 20:
             raise ValueError('Username must be between 3 and 20 characters.')
 
 class TicketForm(FlaskForm):
-
     title = StringField(
-        'Title',
-        validators=[DataRequired()]
+        'Ticket Title',
+        validators=[
+            DataRequired(),
+            Length(min=5, max=200)
+        ]
     )
 
     description = TextAreaField(
         'Description',
-        validators=[DataRequired()]
+        validators=[
+            DataRequired(),
+            Length(min=10)
+        ]
     )
 
-    submit = SubmitField('Create Ticket')
+    submit = SubmitField('Submit Ticket')

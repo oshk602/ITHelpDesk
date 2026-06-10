@@ -191,3 +191,13 @@ body {
     background: #fee2e2;
     color: #dc2626;
 }
+
+.error-message {
+    color: #dc2626;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.error-input {
+    border: 2px solid #dc2626;
+}
