@@ -255,6 +255,33 @@ def tickets():
         tickets=tickets
     )
 
+@app.route('/ticket/<int:ticket_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_ticket(ticket_id):
+
+    ticket = Ticket.query.get_or_404(ticket_id)
+
+    # Prevent users editing other users' tickets
+    if ticket.user_id != current_user.id:
+        return redirect(url_for('tickets'))
+
+    form = TicketForm(obj=ticket)
+
+    if form.validate_on_submit():
+
+        ticket.title = form.title.data
+        ticket.description = form.description.data
+
+        db.session.commit()
+
+        return redirect(url_for('tickets'))
+
+    return render_template(
+        'edit_ticket.html',
+        form=form,
+        ticket=ticket
+    )
+
 # Logout route
 @app.route('/logout')
 @login_required

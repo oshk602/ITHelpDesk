@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Ticket
+{% endblock %}
+
+{% block content %}
+
+<div class="page-container">
+
+    <div class="content-card">
+
+        <h1>Edit Ticket</h1>
+
+        <form method="POST" novalidate>
+
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+
+                {{ form.title.label }}
+
+                {% if form.title.errors %}
+                    {{ form.title(class="form-input error-input") }}
+                {% else %}
+                    {{ form.title(class="form-input") }}
+                {% endif %}
+
+                {% for error in form.title.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form.description.label }}
+
+                {% if form.description.errors %}
+                    {{ form.description(class="form-textarea error-input") }}
+                {% else %}
+                    {{ form.description(class="form-textarea") }}
+                {% endif %}
+
+                {% for error in form.description.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="button-group">
+
+                {{ form.submit(
+                    class="primary-btn",
+                    value="Save Changes"
+                ) }}
+
+                <a href="{{ url_for('tickets') }}"
+                   class="secondary-btn">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
