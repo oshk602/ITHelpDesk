@@ -7,6 +7,7 @@
           href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    {% if current_user.is_authenticated %}
     <nav class="navbar">
         <div class="nav-left">
 
@@ -29,17 +30,44 @@
 
         <div class="nav-right">
 
-            <span class="user-badge">
-                {{ current_user.username }}
-            </span>
+            {% if current_user.is_authenticated %}
 
-            <a href="{{ url_for('logout') }}"
-            class="logout-link">
-                Logout
-            </a>
+                <span class="user-badge">
+                    {{ current_user.username }}
+                </span>
+
+                <a href="{{ url_for('logout') }}"
+                class="logout-link">
+                    Logout
+                </a>
+
+            {% endif %}
 
         </div>
     </nav>
+    {% endif %}
+
+    <!-- Flash Messages -->
+
+    <div class="flash-container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+    </div>
 
     {% block content %}
     {% endblock %}

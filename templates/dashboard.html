@@ -30,6 +30,21 @@ Dashboard
 
         </a>
 
+        {% if current_user.role == 'admin' %}
+
+        <a href="{{ url_for('manage_users') }}"
+        class="dashboard-card">
+
+            <h2>Manage Users</h2>
+
+            <p>
+                View users and roles.
+            </p>
+
+        </a>
+
+        {% endif %}
+
     </div>
 
 </div>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Users
+{% endblock %}
+
+{% block content %}
+
+<div class="page-container">
+
+    <div class="content-card">
+
+        <h1>Manage Users</h1>
+
+        <table class="users-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for user in users %}
+
+                <tr>
+
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+
+                        {% if user.id != current_user.id %}
+
+                        <a href="{{ url_for(
+                            'toggle_role',
+                            user_id=user.id
+                        ) }}"
+                        class="edit-btn">
+
+                            Change Role
+
+                        </a>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

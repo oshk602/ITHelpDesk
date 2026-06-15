@@ -20,9 +20,14 @@ My Tickets
 
                 <p>{{ ticket.description }}</p>
 
+                <p class="ticket-date">
+                    Created:
+                    {{ ticket.created_at.strftime('%d/%m/%Y %H:%M') }}
+                </p>
+
                 <div class="ticket-footer">
 
-                    <span class="status-badge">
+                    <span class="status-badge status-{{ ticket.status|lower|replace(' ', '-') }}">
                         {{ ticket.status }}
                     </span>
 
@@ -33,6 +38,21 @@ My Tickets
                     class="secondary-btn">
                         Edit
                     </a>
+
+                    {% if current_user.role == 'admin' %}
+
+                    <a href="{{ url_for(
+                        'delete_ticket',
+                        ticket_id=ticket.id
+                    ) }}"
+                    class="delete-btn"
+                    onclick="return confirm(
+                        'Are you sure you want to delete this ticket?'
+                    )">
+                        Delete
+                    </a>
+
+                    {% endif %}
 
                 </div>
 

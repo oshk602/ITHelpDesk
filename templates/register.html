@@ -1,36 +1,88 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h1>Register</h1>
+{% block title %}
+Register
+{% endblock %}
 
-    <form method="POST">
+{% block content %}
 
-        {{ form.hidden_tag() }}
+<div class="page-container">
 
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username() }}
+    <div class="content-card">
+
+        <h1>Register</h1>
+
+        <form method="POST" novalidate>
+
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+
+                {{ form.username.label }}
+
+                {% if form.username.errors %}
+                    {{ form.username(class="form-input error-input") }}
+                {% else %}
+                    {{ form.username(class="form-input") }}
+                {% endif %}
+
+                {% for error in form.username.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form.email.label }}
+
+                {% if form.email.errors %}
+                    {{ form.email(class="form-input error-input") }}
+                {% else %}
+                    {{ form.email(class="form-input") }}
+                {% endif %}
+
+                {% for error in form.email.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="form-group">
+
+                {{ form.password.label }}
+
+                {% if form.password.errors %}
+                    {{ form.password(class="form-input error-input") }}
+                {% else %}
+                    {{ form.password(class="form-input") }}
+                {% endif %}
+
+                {% for error in form.password.errors %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            {{ form.submit(class="primary-btn") }}
+
+        </form>
+
+        <p style="margin-top:20px;">
+            Already have an account?
+            <a href="{{ url_for('login') }}">
+                Login here
+            </a>
         </p>
 
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email() }}
-        </p>
+    </div>
 
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password() }}
-        </p>
+</div>
 
-        <p>
-            {{ form.submit() }}
-        </p>
-
-    </form>
-
-</body>
-</html>
+{% endblock %}

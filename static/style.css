@@ -139,8 +139,36 @@ body {
     opacity: 0.9;
 }
 
+.delete-btn {
+
+    display: inline-block;
+
+    padding: 10px 16px;
+
+    background: #dc2626;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-weight: 500;
+}
+
+.delete-btn:hover {
+    opacity: 0.9;
+}
+
 .ticket-card h2 {
     margin-top: 0;
+}
+
+.ticket-date {
+    margin-top: 15px;
+
+    font-size: 0.9rem;
+
+    color: #6b7280;
 }
 
 .ticket-footer {
@@ -154,17 +182,45 @@ body {
 }
 
 .status-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #dbeafe;
-    color: #1e40af;
 
-    padding: 5px 12px;
+    min-width: 110px;
+
+    padding: 6px 12px;
+
     border-radius: 20px;
 
-    font-weight: bold;
+    font-weight: 600;
+}
 
+/* Open */
+
+.status-open {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* In Progress */
+
+.status-in-progress {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Resolved */
+
+.status-resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* Closed */
+
+.status-closed {
+    background: #e5e7eb;
+    color: #374151;
 }
 
 .navbar {
@@ -226,4 +282,73 @@ body {
 
 .error-input {
     border: 2px solid #dc2626;
+}
+
+.flash-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.flash-message {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    font-weight: 500;
+}
+
+/* Success */
+
+.flash-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+/* Info */
+
+.flash-info {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+/* Error */
+
+.flash-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.users-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+}
+
+.users-table th {
+
+    text-align: left;
+
+    padding: 12px;
+
+    background: #f3f4f6;
+}
+
+.users-table td {
+
+    padding: 12px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.users-table tr:hover {
+
+    background: #f9fafb;
 }
