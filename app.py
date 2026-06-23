@@ -164,14 +164,14 @@ with app.app_context():
 
     seed_database()
 
-# Home route
+
 @app.route('/')
 def home():
 
     if current_user.is_authenticated:
-        return f"Hello {current_user.username}"
+        return redirect(url_for('dashboard'))
 
-    return "Flask is working!"
+    return redirect(url_for('login'))
 
 # Register route
 @app.route('/register', methods=['GET', 'POST'])
